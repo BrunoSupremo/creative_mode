@@ -1,0 +1,135 @@
+{
+	"ui": {
+		"game":{
+			"creative_mode":{
+				"display_name":"Modo Criativo",
+				"description":"Ferramentas e opções Criativas"
+			}
+		},
+		"window":{
+			"cover":{
+				"instructions":{
+					"header":"Instruções",
+					"menu":{
+						"title":"Menu",
+						"description":"No lado esquerdo está o menu com botões categorizados. Cada página de categoria aberta tem seu próprio conjunto de ferramentas."
+					},
+					"ui":{
+						"title":"U.I.",
+						"description":"Você pode ocultar subcategorias. Por exemplo, clique no cabeçalho 'Instruções' para ocultar esta seção.",
+						"description2":"O status das subcategorias é salvo automaticamente. Da próxima vez que você as visitar, elas ainda estarão ocultas."
+					},
+					"access":{
+						"title":"Acesso",
+						"description":"Esta janela pode ser aberta de três maneiras diferentes. No botão inferior da barra de tarefas, na parte superior das ferramentas de depuração (se aquele mod estiver ativo) e com um atalho de teclado Ctrl+Shift+C.",
+						"description2":"Você pode ocultar ou mostrar esses botões pela categoria U.I. O atalho pode ser alterado no jogo em 'Configurações' > 'Controles' > 'Menu' > 'Modo Criativo'.",
+						"description3":"As preferências dos botões são salvas automaticamente. Da próxima vez que você executar o jogo, ele ainda deverá estar o mesmo de antes."
+					}
+				}
+			},
+			"menu":{
+				"categories":"Categorias",
+				"spawn":"Criar",
+				"remove":"Remover",
+				"other":"Outros",
+				"data":"Dados",
+				"inventory":"Inventario",
+				"jobs":"Classes",
+				"ui":"U.I."
+			},
+			"citizens":{
+				"title":"Cidadão",
+				"add":"Adicionar Cidadão"
+			},
+			"resources":{
+				"title":"Recursos",
+				"wood":"Adicionar Madeira",
+				"stone":"Adicionar Pedra",
+				"clay":"Adicionar Barro"
+			},
+			"remove":{
+				"title":"Deletar todos do mapa",
+				"trees":"Árvores",
+				"plants":"Plantas",
+				"boulder":"Pedras",
+				"water":"Água"
+			},
+			"remove2":{
+				"title":"Deletar a entidade selecionada",
+				"entity":"Deletar Entidade"
+			},
+			"other":{
+				"title":"Teleporte",
+				"teleport":"Teleportar Entidade",
+				"load_manifest":"Carregar Manifesto",
+				"unload_manifest":"Resetar Manifesto"
+			},
+			"data":{
+				"calendar":{
+					"header":"Calendar",
+					"time":{
+						"title":"Tempo",
+						"description":"Defina a hora atual do dia."
+					},
+					"weather":{
+						"title":"Clima",
+						"description":"Mude o clima. Clique duas vezes para pular a transição lenta."
+					},
+					"seasons":{
+						"title":"Seasons",
+						"description":"Change the season."
+					}
+				}
+			},
+			"inventory":{
+				"money":{
+					"header":"Dinheiro",
+					"gold":{
+						"title":"Ouro",
+						"description":"Adicione ouro à sua cidade. Use números negativos para remover ouro."
+					},
+					"trader":{
+						"title":"Comerciantes",
+						"description":"Chama um comerciante aleatório para sua cidade."
+					},
+					"traveler":{
+						"title":"Viajantes",
+						"description":"Chama um viajante para sua cidade."
+					}
+				}
+			},
+			"jobs":{
+				"unlock":{
+					"header":"Desbloquear",
+					"talisman":{
+						"title":"Talismãs",
+						"description":"Gera todos os talismãs."
+					},
+					"levelup":{
+						"title":"Subir de nível",
+						"description":"Eleve todos ao nível máximo."
+					},
+					"crops":{
+						"title":"Plantações",
+						"description":"Desbloqueia todas as opções de culturas."
+					},
+					"recipes":{
+						"title":"Receitas",
+						"description":"Desbloqueia todas as receitas."
+					}
+				}
+			},
+			"ui":{
+				"visibility":{
+					"header":"Visibilidade do Mod",
+					"buttons":{
+						"title":"Botões",
+						"description":"Defina quais botões permanecerão visíveis. Se nenhum estiver visível, você só poderá abri-lo através do atalho de teclado, Ctrl+Shift+C",
+						"taskbar":"Na barra de tarefas",
+						"debugtools":"Nas ferramentas de debug"
+					}
+				}
+			}
+		}
+	}
+}

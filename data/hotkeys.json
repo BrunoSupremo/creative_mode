@@ -1,0 +1,11 @@
+{
+	"keys": {
+		"creative_mode:open": {
+			"display_name": "i18n(creative_mode:ui.game.creative_mode.display_name)",
+			"category": "menus",
+			"ordinal": 99,
+			"combo1": "ctrl+shift+keyc",
+			"combo2": ""
+		}
+	}
+}

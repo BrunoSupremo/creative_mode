@@ -1,0 +1,102 @@
+{
+	"info" : {
+		"name" : "Creative Mode",
+		"namespace" : "creative_mode",
+		"version" : 3,
+		"steam_file_id" : "2830847774"
+	},
+	"dependencies": [
+		"rayyas_children",
+		"northern_alliance",
+		"debugtools",
+		"stonehearth_ace"
+	],
+	"default_locale" : "en",
+	"server_init_script" : "file(server)",
+	"aliases" : {
+		"data:creative_mode":"file(data/creative_mode.json)"
+	},
+	"mixintos" : {
+		"stonehearth/data/ui/start_menu.json":"file(data/ui/start_menu.json)",
+
+		"stonehearth:hotkeys": "file(data/hotkeys.json)"
+	},
+	"overrides" : {},
+
+	"functions": {
+		"get_all_item_uris_command": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"remove": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"add_citizen": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"spawn_item": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"hot_reload_server": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"hot_reload_client": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "client"
+		},
+		
+		"change_weather": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		
+		"add_gold": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"spawn_trader": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"spawn_traveler": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+
+		"spawn_talismans": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"levelup": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"unlock_crops": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"unlock_recipes": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+	},
+	"components" : {},
+	"controllers" : {},
+	"ui":{
+		"html":[
+			"file(ui/window/window.html)"
+		],
+		"js":[
+			"file(ui/game/start_menu/start_menu.js)",
+			"file(ui/window/window.js)"
+		],
+		"less": [
+			"file(ui/game/start_menu/stonehearth_menu.less)",
+			"file(ui/window/window.less)"
+		]
+	}
+}

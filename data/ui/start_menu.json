@@ -1,0 +1,12 @@
+{
+	"creative_mode_taskbar": {
+		"name": "i18n(creative_mode:ui.game.creative_mode.display_name)",
+		"description": "i18n(creative_mode:ui.game.creative_mode.description)",
+		"class": "dock",
+		"icon": "/creative_mode/ui/game/start_menu/images/creative_mode.png",
+		"hotkey_action": "creative_mode:open",
+		"game_mode": "normal",
+		"menuHideSound": "stonehearth:sounds:ui:start_menu:jobs_close",
+		"menuShowSound": "stonehearth:sounds:ui:start_menu:jobs_open"
+	}
+}

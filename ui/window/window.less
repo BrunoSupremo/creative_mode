@@ -1,0 +1,197 @@
+#creative_mode_debugIcon {
+	.handCursor;
+	float: right;
+	width: 32px;
+	height: 32px;
+	margin: 4px;
+	background-repeat: no-repeat;
+	background: url('images/creative_mode_debugIcon.png');
+}
+
+#creative_mode_window.gui {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+
+	.window{
+		position: relative;
+		width: 800px;
+		height: 730px;
+	}
+	nav,.page{
+		position: absolute;
+		bottom: 0;
+		height: 680px;
+		overflow-y: auto;
+	}
+	nav{
+		padding-right: 1em;
+		width: 200px;
+		button{
+			width: 100%;
+			margin: 2px 0;
+		}
+	}
+	h1{
+		text-align: center;
+	}
+	img{
+		object-fit: contain;
+		margin: 8px;
+	}
+	div.border, div.borderless{
+		text-align: center;
+		position: relative;
+		width: fit-content;
+		padding: 0;
+		margin: 0 auto;
+	}
+	div.border::after{
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-image:
+		url(images/border_top_left.png),
+		url(images/border_top_right.png),
+		url(images/border_bottom_right.png),
+		url(images/border_bottom_left.png);
+		background-position:
+		top left,
+		top right,
+		bottom right,
+		bottom left;
+		background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+	}
+	.styled_divs{
+		background-position: center;
+		background-size: 1000% 1000%;
+		background-clip: padding-box;
+		border-width: 9px 9px 13px 9px;
+		border-image: url(/stonehearth/ui/root/css/images/gui/panel.png) 9 9 13 9 repeat;
+		border-style: solid;
+		background-image: url(/stonehearth/ui/root/css/images/gui/panel.png);
+	}
+	#cover{
+		div:last-child{
+			display: block;
+		}
+	}
+	.page{
+		right: 0;
+		width: 600px;
+		display: flex;
+		flex-direction: column;
+		main:first-child{
+			margin-top: 30px;
+		}
+		main{
+			.styled_divs;
+			filter: brightness(.9);
+			position: relative;
+			margin: 20px 10px;
+			padding: 10px 10px 0;
+
+			h2.collapsed{
+				filter: contrast(0.5);
+			}
+			h2{
+				position: absolute;
+				top: -35px;
+				right: initial;
+				font-size: 21px;
+				display: inline-flex;
+				border-image: url(http://radiant/stonehearth/ui/game/unit_frame/images/name-bg.png) 4 32 4 32 fill;
+				border-width: 4px 32px 4px 32px;
+				border-style: solid;
+				height: 32px;
+				color: #ebebeb;
+			}
+			h2.collapsed ~ section{
+				display: none;
+			}
+			section{
+				.styled_divs;
+				filter: brightness(1.2);
+				margin-top: 20px;
+				margin-bottom: 0;
+				padding: 10px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				div{
+					position: relative;
+					flex: 2;
+
+					h3{
+						margin-top: 0;
+					}
+					p{
+						margin-bottom: 0;
+					}
+
+					input{
+						width: 70px;
+						padding: .5em;
+						font-size: 15px;
+					}
+					button{
+						background-size: contain, 1000% 1000%;
+						background-image: url(/stonehearth/ui/game/citizens/images/resume.png),
+						url(/stonehearth/ui/root/css/images/gui/button.png);
+						width: 50px;
+						height: 50px;
+					}
+
+					.ui-slider-handle{
+						top: -7px;
+						height: 15px;
+					}
+					#below_slider{
+						position: absolute;
+						justify-content: space-between;
+						width: ~"calc(100% - 0.5em)";
+						top: 1em;
+						left: 0;
+					}
+					input[type=radio]{
+						width: 0;
+					}
+					input[type=radio] + label,
+					input[type=checkbox] + label{
+						position: relative;
+						width: max-content;
+					}
+					input[type=radio] + label img{
+						position: absolute;
+						width: auto;
+						height: 100%;
+						display: none;
+						left: 0;
+						margin: 0;
+					}
+					input[type=radio]:checked + label img{
+						display: initial;
+					}
+				}
+				#visibilityOptions_div{
+					flex-direction: column;
+					align-items: flex-start;
+				}
+				div:last-child{
+					display: flex;
+					flex: 1;
+					align-items: center;
+					padding-left: 1em;
+					justify-content: flex-end;
+				}
+			}
+		}
+	}
+	.page:not(.current_page){
+		display: none;
+	}
+}

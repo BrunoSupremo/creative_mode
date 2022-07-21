@@ -1,0 +1,135 @@
+{
+	"ui": {
+		"game":{
+			"creative_mode":{
+				"display_name":"Creative Mode",
+				"description":"Creative tools and options"
+			}
+		},
+		"window":{
+			"cover":{
+				"instructions":{
+					"header":"Instructions",
+					"menu":{
+						"title":"Menu",
+						"description":"At the left side there is the menu with categorized buttons. Each category page open has their own set of tools."
+					},
+					"ui":{
+						"title":"U.I.",
+						"description":"You can hide subcategories. For example, click on the header 'Instructions' up there to hide this section.",
+						"description2":"Subcategories status are automatically saved. Next time you visit them, they will still be hidden."
+					},
+					"access":{
+						"title":"Access",
+						"description":"This window can be opened in three different ways. At the bottom taskbar button, at the top in debug tools (if that mod is active), and with a keyboard shortcut Ctrl+Shift+C.",
+						"description2":"You can hide or show those button through the U.I. category. The shortcut can be changed in the game 'Settings' > 'Controls' > 'Menu' > 'Creative Mode'.",
+						"description3":"Buttons preferences are saved. Next time you run the game it should still be the same as before."
+					}
+				}
+			},
+			"menu":{
+				"categories":"Categories",
+				"spawn":"Spawn",
+				"remove":"Remove",
+				"other":"Others",
+				"data":"Data",
+				"inventory":"Inventory",
+				"jobs":"Jobs",
+				"ui":"U.I."
+			},
+			"citizens":{
+				"title":"Citizens",
+				"add":"Add Citizen"
+			},
+			"resources":{
+				"title":"Resources",
+				"wood":"Add Wood",
+				"stone":"Add Stone",
+				"clay":"Add Clay"
+			},
+			"remove":{
+				"title":"Delete all from the map",
+				"trees":"Trees",
+				"plants":"Plants",
+				"boulder":"Boulders",
+				"water":"Water"
+			},
+			"remove2":{
+				"title":"Delete the selected entity",
+				"entity":"Delete Entity"
+			},
+			"other":{
+				"title":"Teleport",
+				"teleport":"Teleport Entity",
+				"load_manifest":"Load Manifest",
+				"unload_manifest":"Reset Manifest"
+			},
+			"data":{
+				"calendar":{
+					"header":"Calendar",
+					"time":{
+						"title":"Time",
+						"description":"Set the current time of the day."
+					},
+					"weather":{
+						"title":"Weather",
+						"description":"Change the weather. Click twice to skip the slow transition."
+					},
+					"seasons":{
+						"title":"Seasons",
+						"description":"Change the season."
+					}
+				}
+			},
+			"inventory":{
+				"money":{
+					"header":"Money",
+					"gold":{
+						"title":"Gold",
+						"description":"Add gold to your town. Use negative numbers to remove gold."
+					},
+					"trader":{
+						"title":"Traders",
+						"description":"Calls a random trader to your town."
+					},
+					"traveler":{
+						"title":"Travelers",
+						"description":"Calls a traveler to your town."
+					}
+				}
+			},
+			"jobs":{
+				"unlock":{
+					"header":"Unlock",
+					"talisman":{
+						"title":"Talismans",
+						"description":"Spawn all job talismans."
+					},
+					"levelup":{
+						"title":"Level up",
+						"description":"Raise all jobs to max level."
+					},
+					"crops":{
+						"title":"Crops",
+						"description":"Unlocks all crop options."
+					},
+					"recipes":{
+						"title":"Recipes",
+						"description":"Unlocks all recipes."
+					}
+				}
+			},
+			"ui":{
+				"visibility":{
+					"header":"Mod Visibility",
+					"buttons":{
+						"title":"Buttons",
+						"description":"Set which buttons will stay visible. If none is visible, you will only be able to open it through the keyboard shortcut, Ctrl+Shift+C",
+						"taskbar":"At taskbar",
+						"debugtools":"At debug tools"
+					}
+				}
+			}
+		}
+	}
+}

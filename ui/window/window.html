@@ -1,0 +1,323 @@
+<script type="text/x-handlebars" data-template-name="creative_mode_debugIcon">
+	<div id="creative_mode_debugIcon" title="Creative Mode"></div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="creative_mode_window">
+	<div id="creative_mode_window" class="gui">
+		<div class="window">
+			<div class="title">{{i18n creative_mode:ui.game.creative_mode.display_name}} <div class="closeButton"></div></div>
+			<nav>
+				<h1>{{i18n creative_mode:ui.window.menu.categories}}</h1>
+				<button {{action "show_page" "spawn" target=view}}>{{i18n creative_mode:ui.window.menu.spawn}}</button>
+				<button {{action "show_page" "remove" target=view}}>{{i18n creative_mode:ui.window.menu.remove}}</button>
+				<button {{action "show_page" "other" target=view}}>{{i18n creative_mode:ui.window.menu.other}}</button>
+
+
+				<button {{action "show_page" "data" target=view}}>{{i18n creative_mode:ui.window.menu.data}}</button>
+				<button {{action "show_page" "inventory" target=view}}>{{i18n creative_mode:ui.window.menu.inventory}}</button>
+				<button {{action "show_page" "jobs" target=view}}>{{i18n creative_mode:ui.window.menu.jobs}}</button>
+				<button {{action "show_page" "ui" target=view}}>{{i18n creative_mode:ui.window.menu.ui}}</button>
+			</nav>
+
+			<div id="cover" class="page current_page">
+				<img src="/creative_mode/ui/window/images/creative_mode.png">
+				<main>
+					<h2 id="cover_instructions">{{i18n creative_mode:ui.window.cover.instructions.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.cover.instructions.menu.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.cover.instructions.menu.description}}</p>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.cover.instructions.ui.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.cover.instructions.ui.description}}</p>
+							<p>{{i18n creative_mode:ui.window.cover.instructions.ui.description2}}</p>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.cover.instructions.access.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.cover.instructions.access.description}}</p>
+							<p>{{i18n creative_mode:ui.window.cover.instructions.access.description2}}</p>
+							<p>{{i18n creative_mode:ui.window.cover.instructions.access.description3}}</p>
+						</div>
+					</section>
+				</main>
+			</div>
+
+			<div id="data" class="page">
+				<main>
+					<h2 id="data_calendar">{{i18n creative_mode:ui.window.data.calendar.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.data.calendar.time.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.data.calendar.time.description}}</p>
+						</div>
+						<div>
+							<div class="slider"></div>
+							<div id="below_slider">
+								<span>0</span><span>12</span><span>24</span>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.data.calendar.weather.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.data.calendar.weather.description}}</p>
+						</div>
+						<div>
+							<div id="weatherOptions_div">
+								{{#each weather in view.weather_list}}
+								<input type="radio" name="weatherOptions" {{bind-attr id=weather.uri}}>
+								<label {{bind-attr for=weather.uri}}>
+									<img src={{unbound weather.icon}}>
+									{{i18n_key weather.display_name}}
+								</label>
+								{{/each}}
+							</div>
+							<button {{action "change_weather" target=view}}></button>
+						</div>
+					</section>
+					<!-- <section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.data.calendar.seasons.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.data.calendar.seasons.description}}</p>
+						</div>
+						<div>
+							<button {{action "spawn_traveler" target=view}}></button>
+						</div>
+					</section> -->
+				</main>
+			</div>
+			<div id="inventory" class="page">
+				<main>
+					<h2 id="inventory_money">{{i18n creative_mode:ui.window.inventory.money.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.inventory.money.gold.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.inventory.money.gold.description}}</p>
+						</div>
+						<div>
+							<input id="inventory_gold_input" type="text" value="1000">
+							<button {{action "add_gold" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.inventory.money.trader.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.inventory.money.trader.description}}</p>
+						</div>
+						<div>
+							<button {{action "spawn_trader" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.inventory.money.traveler.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.inventory.money.traveler.description}}</p>
+						</div>
+						<div>
+							<button {{action "spawn_traveler" target=view}}></button>
+						</div>
+					</section>
+				</main>
+				<main>
+					<h2>{{i18n creative_mode:ui.window.resources.title}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.resources.wood}}</h3>
+							<p>{{i18n creative_mode:ui.window.resources.wood}}</p>
+						</div>
+						<div>
+							<button {{action "spawn_item" "wood:oak_log" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.resources.stone}}</h3>
+							<p>{{i18n creative_mode:ui.window.resources.stone}}</p>
+						</div>
+						<div>
+							<button {{action "spawn_item" "stone:hunk_of_stone" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.resources.clay}}</h3>
+							<p>{{i18n creative_mode:ui.window.resources.clay}}</p>
+						</div>
+						<div>
+							<button {{action "spawn_item" "clay:clay_mound" target=view}}></button>
+						</div>
+					</section>
+				</main>
+			</div>
+			<div id="jobs" class="page">
+				<main>
+					<h2 id="jobs_unlock">{{i18n creative_mode:ui.window.jobs.unlock.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.jobs.unlock.talisman.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.unlock.talisman.description}}</p>
+						</div>
+						<div>
+							<button {{action "spawn_talismans" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.jobs.unlock.levelup.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.unlock.levelup.description}}</p>
+						</div>
+						<div>
+							<button {{action "levelup" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.jobs.unlock.crops.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.unlock.crops.description}}</p>
+						</div>
+						<div>
+							<button {{action "unlock_crops" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.jobs.unlock.recipes.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.unlock.recipes.description}}</p>
+						</div>
+						<div>
+							<button {{action "unlock_recipes" target=view}}></button>
+						</div>
+					</section>
+				</main>
+			</div>
+			<div id="ui" class="page">
+				<main>
+					<h2 id="jobs_unlock">{{i18n creative_mode:ui.window.ui.visibility.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.ui.visibility.buttons.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.ui.visibility.buttons.description}}</p>
+						</div>
+						<div id="visibilityOptions_div">
+							<input type="checkbox" id="visible_at_taskbar">
+							<label for="visible_at_taskbar">
+								{{i18n creative_mode:ui.window.ui.visibility.buttons.taskbar}}
+							</label>
+							<input type="checkbox" id="visible_at_debugtools">
+							<label for="visible_at_debugtools">
+								{{i18n creative_mode:ui.window.ui.visibility.buttons.debugtools}}
+							</label>
+						</div>
+					</section>
+				</main>
+			</div>
+
+			<div id="spawn" class="page">
+				<main>
+					<h2>{{i18n creative_mode:ui.window.citizens.title}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.citizens.add}}</h3>
+							<p>{{i18n creative_mode:ui.window.citizens.add}}</p>
+						</div>
+						<div>
+							<button {{action "add_citizen" target=view}}></button>
+						</div>
+					</section>
+				</main>
+			</div>
+
+			<div id="remove" class="page">
+				<main>
+					<h2>{{i18n creative_mode:ui.window.remove.title}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.remove.trees}}</h3>
+							<p>{{i18n creative_mode:ui.window.remove.trees}}</p>
+						</div>
+						<div>
+							<button {{action "remove" "trees" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.remove.plants}}</h3>
+							<p>{{i18n creative_mode:ui.window.remove.plants}}</p>
+						</div>
+						<div>
+							<button {{action "remove" "plants" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.remove.boulder}}</h3>
+							<p>{{i18n creative_mode:ui.window.remove.boulder}}</p>
+						</div>
+						<div>
+							<button {{action "remove" "boulder" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.remove.water}}</h3>
+							<p>{{i18n creative_mode:ui.window.remove.water}}</p>
+						</div>
+						<div>
+							<button {{action "remove" "water" target=view}}></button>
+						</div>
+					</section>
+				</main>
+				<main>
+					<h2>{{i18n creative_mode:ui.window.remove2.title}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.remove2.entity}}</h3>
+							<p>{{i18n creative_mode:ui.window.remove2.entity}}</p>
+						</div>
+						<div>
+							<button {{action "destroy_entity" target=view}}></button>
+						</div>
+					</section>
+				</main>
+			</div>
+
+			<div id="other" class="page">
+				<main>
+					<h2>{{i18n creative_mode:ui.window.other.title}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.other.teleport}}</h3>
+							<p>{{i18n creative_mode:ui.window.other.teleport}}</p>
+						</div>
+						<div>
+							<button {{action "teleport" target=view}}></button>
+						</div>
+					</section>
+					<!-- <section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.other.load_manifest}}</h3>
+							<p>{{i18n creative_mode:ui.window.other.load_manifest}}</p>
+						</div>
+						<div>
+							<button {{action "load_manifest" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.other.unload_manifest}}</h3>
+							<p>{{i18n creative_mode:ui.window.other.unload_manifest}}</p>
+						</div>
+						<div>
+							<button {{action "unload_manifest" target=view}}></button>
+						</div>
+					</section> -->
+				</main>
+			</div>
+		</div>
+	</div>
+</script>

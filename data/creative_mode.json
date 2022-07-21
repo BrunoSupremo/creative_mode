@@ -1,0 +1,19 @@
+{
+	"data": {
+		"calendar": {
+			"weather_list": [
+				"stonehearth:weather:blizzard",
+				"stonehearth:weather:cloudy",
+				"stonehearth:weather:foggy",
+				"stonehearth:weather:lucky",
+				"stonehearth:weather:rain",
+				"stonehearth:weather:sandstorm",
+				"stonehearth:weather:snow",
+				"stonehearth:weather:sunny",
+				"stonehearth:weather:thunderstorm",
+				"stonehearth:weather:titanstorm",
+				"stonehearth:weather:windy"
+			]
+		}
+	}
+}
