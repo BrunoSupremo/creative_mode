@@ -85,6 +85,39 @@ function CreativeModeHandler:change_season(session, response, uri)
 	return true
 end
 
+function CreativeModeHandler:change_difficulty(session, response, uri)
+	stonehearth.game_creation._sv._game_mode_initialized = false
+	stonehearth.game_creation:set_game_mode(uri)
+	return true
+end
+
+-- entities
+
+function CreativeModeHandler:change_scale(session, response, entity, scale)
+	if not entity then
+		return false
+	end
+	entity:get_component("render_info"):set_scale(scale)
+	return true
+end
+
+function CreativeModeHandler:rotate_entity_command(session, response, entity, degrees)
+	if not entity then
+		return false
+	end
+	radiant.entities.turn_to(entity, degrees)
+	local destination_component = entity:get_component('destination')
+	if destination_component then
+		destination_component:set_region(destination_component:get_region())
+	end
+
+	local region_collision_shape_component = entity:get_component('region_collision_shape')
+	if region_collision_shape_component then
+		region_collision_shape_component:set_region(region_collision_shape_component:get_region())
+	end
+	return true
+end
+
 -- inventory
 
 function CreativeModeHandler:add_gold(session, response, gold_amount)

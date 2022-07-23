@@ -104,6 +104,21 @@ App.CreativeModeView = App.View.extend({
 	modal: false,
 	closeOnEsc: true,
 
+	creativeModeWeatherComponents: {
+		"data": {
+			"calendar": {
+				"weather_list": {
+					"*": {}
+				}
+			}
+		}
+	},
+	creativeModeGameModeComponents: {
+		"game_modes": {
+			"*": {}
+		}
+	},
+
 	didInsertElement: function() {
 		var self = this;
 		self.$().draggable();
@@ -132,7 +147,7 @@ App.CreativeModeView = App.View.extend({
 		});
 
 		self.slider_being_dragged = false;
-		self.$('.slider').slider({
+		self.$('#slider_time').slider({
 			value: 0,
 			min: 0,
 			max: 23.99,
@@ -150,33 +165,53 @@ App.CreativeModeView = App.View.extend({
 		});
 		radiant.call('stonehearth:get_clock_object')
 		.done(function (o) {
-			self.trace = radiant.trace(o.clock_object)
+			self.timerTrace = radiant.trace(o.clock_object)
 			.progress(function (date) {
 				if(!(self.isDestroying || self.isDestroyed) && !self.slider_being_dragged){
-					self.$('.slider').slider('option', 'value', (date.hour % 24) + date.minute / 60);
+					self.$('#slider_time').slider('option', 'value', (date.hour % 24) + date.minute / 60);
 				}
 			})
 		});
+		self.$('#slider_rotate').slider({
+			value: 0,
+			min: 0,
+			max: 360,
+			slide: function (event, ui) {
+				radiant.call('creative_mode:rotate_entity_command',
+					App.stonehearthClient.getSelectedEntity(),
+					ui.value);
+			}
+		});
 
-		let weather_list_array = [];
-		let weather_list_length = 0;
-		$.get('/creative_mode/data/creative_mode.json')
-		.done(function (result) {
-			weather_list_length = result.data.calendar.weather_list.length;
-			result.data.calendar.weather_list.forEach(function(value){
-				new StonehearthDataTrace(value)
-				.progress(function(response) {
-					weather_list_length = weather_list_length -1;
-					weather_list_array.push({
-						uri: value,
-						display_name: response.display_name,
-						icon: response.icon
-					});
-					if (weather_list_length == 0){
-						self.set('weather_list', weather_list_array);
-					}
+		self._creativeModeWeatherTrace  = new StonehearthDataTrace('/creative_mode/data/creative_mode.json', self.creativeModeWeatherComponents)
+		.progress(function(response) {
+			let weather_list_array = [];
+			radiant.each(response.data.calendar.weather_list, function(k, v) {
+				weather_list_array.push({
+					uri: v.__self.__self,
+					display_name: v.__self.display_name,
+					icon: v.__self.icon
 				});
 			});
+			self.set('weather_list', weather_list_array);
+		});
+
+		self._creativeModeGameModeTrace  = new StonehearthDataTrace('stonehearth:game_mode:index', self.creativeModeGameModeComponents)
+		.progress(function(response) {
+			let game_modes_array = [];
+			radiant.each(response.game_modes, function(k, v) {
+				game_modes_array.push({
+					uri: v.alias,
+					ordinal: v.ordinal,
+					display_name: v.display_name
+				});
+			});
+			game_modes_array.sort(function(a, b){
+				let aOrdinal = a.ordinal ? a.ordinal : 1000;
+				let bOrdinal = b.ordinal ? b.ordinal : 1000;
+				return aOrdinal - bOrdinal;
+			});
+			self.set('game_modes', game_modes_array);
 		});
 
 		let visibilityOptions_div = document.querySelector("#creative_mode_window #visibilityOptions_div");
@@ -204,9 +239,17 @@ App.CreativeModeView = App.View.extend({
 	},
 
 	destroy: function() {
-		if (self.trace) {
-			self.trace.destroy();
-			self.trace = null;
+		if (self.timerTrace) {
+			self.timerTrace.destroy();
+			self.timerTrace = null;
+		}
+		if (self._creativeModeWeatherTrace) {
+			self._creativeModeWeatherTrace.destroy();
+			self._creativeModeWeatherTrace = null;
+		}
+		if (self._creativeModeGameModeTrace) {
+			self._creativeModeGameModeTrace.destroy();
+			self._creativeModeGameModeTrace = null;
 		}
 		App.stonehearth.CreativeModeView = null;
 
@@ -242,10 +285,6 @@ App.CreativeModeView = App.View.extend({
 			radiant.call('creative_mode:spawn_item', item);
 		},
 
-		teleport: function(item){
-			radiant.call('stonehearth:teleport_entity', App.stonehearthClient.getSelectedEntity());
-		},
-
 		load_manifest: function(manifest){
 			if (!manifest) {
 				// manifest = "/swamp_goblins/swamp_biome_selected/manifest.json";
@@ -263,6 +302,27 @@ App.CreativeModeView = App.View.extend({
 		change_weather: function(){
 			radiant.call('creative_mode:change_weather',
 				document.querySelector("#weatherOptions_div input:checked").id);
+		},
+		change_difficulty: function(){
+			radiant.call('creative_mode:change_difficulty',
+				document.querySelector("#difficultyOptions_div input:checked").id);
+		},
+
+		//entities
+		teleport_entity: function(){
+			radiant.call('stonehearth:teleport_entity', App.stonehearthClient.getSelectedEntity());
+		},
+		change_scale: function(){
+			radiant.call('creative_mode:change_scale',
+				App.stonehearthClient.getSelectedEntity(),
+				parseFloat(document.querySelector("#entities_scale_input").value)
+				);
+		},
+		rename: function(){
+			radiant.call('stonehearth:set_custom_name',
+				App.stonehearthClient.getSelectedEntity(),
+				document.querySelector("#entities_rename_input").value
+				);
 		},
 
 		//inventory

@@ -10,10 +10,11 @@
 				<h1>{{i18n creative_mode:ui.window.menu.categories}}</h1>
 				<button {{action "show_page" "spawn" target=view}}>{{i18n creative_mode:ui.window.menu.spawn}}</button>
 				<button {{action "show_page" "remove" target=view}}>{{i18n creative_mode:ui.window.menu.remove}}</button>
-				<button {{action "show_page" "other" target=view}}>{{i18n creative_mode:ui.window.menu.other}}</button>
+				<!-- <button {{action "show_page" "other" target=view}}>{{i18n creative_mode:ui.window.menu.other}}</button> -->
 
 
 				<button {{action "show_page" "data" target=view}}>{{i18n creative_mode:ui.window.menu.data}}</button>
+				<button {{action "show_page" "entities" target=view}}>{{i18n creative_mode:ui.window.menu.entities}}</button>
 				<button {{action "show_page" "inventory" target=view}}>{{i18n creative_mode:ui.window.menu.inventory}}</button>
 				<button {{action "show_page" "jobs" target=view}}>{{i18n creative_mode:ui.window.menu.jobs}}</button>
 				<button {{action "show_page" "ui" target=view}}>{{i18n creative_mode:ui.window.menu.ui}}</button>
@@ -56,8 +57,8 @@
 							<p>{{i18n creative_mode:ui.window.data.calendar.time.description}}</p>
 						</div>
 						<div>
-							<div class="slider"></div>
-							<div id="below_slider">
+							<div id="slider_time"></div>
+							<div class="below_slider">
 								<span>0</span><span>12</span><span>24</span>
 							</div>
 						</div>
@@ -89,6 +90,72 @@
 							<button {{action "spawn_traveler" target=view}}></button>
 						</div>
 					</section> -->
+				</main>
+				<main>
+					<h2 id="data_game_mode">{{i18n creative_mode:ui.window.data.game_mode.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.data.game_mode.difficulty.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.data.game_mode.difficulty.description}}</p>
+						</div>
+						<div>
+							<div id="difficultyOptions_div">
+								{{#each difficulty in view.game_modes}}
+								<input type="radio" name="difficultyOptions" {{bind-attr id=difficulty.uri}}>
+								<label {{bind-attr for=difficulty.uri}}>
+									{{i18n_key difficulty.display_name}}
+								</label>
+								{{/each}}
+							</div>
+							<button {{action "change_difficulty" target=view}}></button>
+						</div>
+					</section>
+				</main>
+			</div>
+			<div id="entities" class="page">
+				<main>
+					<h2 id="entities_manipulation">{{i18n creative_mode:ui.window.entities.manipulation.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.manipulation.teleport.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.manipulation.teleport.description}}</p>
+						</div>
+						<div>
+							<button {{action "teleport_entity" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.manipulation.scale.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.manipulation.scale.description}}</p>
+						</div>
+						<div>
+							<input id="entities_scale_input" type="text" value="0.1">
+							<button {{action "change_scale" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.manipulation.rotate.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.manipulation.rotate.description}}</p>
+						</div>
+						<div>
+							<div id="slider_rotate"></div>
+							<div class="below_slider">
+								<span>0°</span><span>180°</span><span>360°</span>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.manipulation.rename.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.manipulation.rename.description}}</p>
+						</div>
+						<div>
+							<input id="entities_rename_input" type="text" value="abc">
+							<button {{action "rename" target=view}}></button>
+						</div>
+					</section>
 				</main>
 			</div>
 			<div id="inventory" class="page">
@@ -289,15 +356,6 @@
 			<div id="other" class="page">
 				<main>
 					<h2>{{i18n creative_mode:ui.window.other.title}}</h2>
-					<section>
-						<div>
-							<h3>{{i18n creative_mode:ui.window.other.teleport}}</h3>
-							<p>{{i18n creative_mode:ui.window.other.teleport}}</p>
-						</div>
-						<div>
-							<button {{action "teleport" target=view}}></button>
-						</div>
-					</section>
 					<!-- <section>
 						<div>
 							<h3>{{i18n creative_mode:ui.window.other.load_manifest}}</h3>

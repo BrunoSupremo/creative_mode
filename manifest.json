@@ -53,6 +53,19 @@
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},
+		"change_difficulty": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+
+		"change_scale": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"rotate_entity_command": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
 		
 		"add_gold": {
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",

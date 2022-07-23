@@ -1,21 +1,18 @@
 creative_mode = {}
-print("Creative Mode version 22.7.20")
+print("Creative Mode version 22.7.22")
 
 --[[
 todo:
 
 quick crafting
 everyone happy
-difficulty changer
 
 
 Categories:
 	ai
-		sleep,teleport,etc..
+		sleep,etc..
 	campaigns
 	data
-		biome
-			load_biome_manifests, replace current biome
 		build/mine
 			instabuild, all
 		calendar
@@ -23,12 +20,20 @@ Categories:
 			weather
 			seasons
 		game_mode
-		kingdoms
+			kingdoms
+			biome
+				load_biome_manifests, replace current biome
+			difficulty
 		music
 		terrain
 			landmarks, geomancer
 	entities
 		buffs
+		manipulation
+			teleport
+			scale
+			rotate
+			rename
 		traits
 	inventory
 		money

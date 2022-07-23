@@ -33,6 +33,7 @@
 				"remove":"Remove",
 				"other":"Others",
 				"data":"Data",
+				"entities":"Entities",
 				"inventory":"Inventory",
 				"jobs":"Jobs",
 				"ui":"U.I."
@@ -59,8 +60,6 @@
 				"entity":"Delete Entity"
 			},
 			"other":{
-				"title":"Teleport",
-				"teleport":"Teleport Entity",
 				"load_manifest":"Load Manifest",
 				"unload_manifest":"Reset Manifest"
 			},
@@ -78,6 +77,34 @@
 					"seasons":{
 						"title":"Seasons",
 						"description":"Change the season."
+					}
+				},
+				"game_mode":{
+					"header":"Game Mode",
+					"difficulty":{
+						"title":"Difficulty",
+						"description":"This will only change the enemies difficult level, not their original spawning rules. (e.g. changing to peacefull will not stop them form spawning)"
+					}
+				}
+			},
+			"entities":{
+				"manipulation":{
+					"header":"Manipulation",
+					"teleport":{
+						"title":"Teleport",
+						"description":"Allows you to pick a new place for the selected entity."
+					},
+					"scale":{
+						"title":"Scale",
+						"description":"Change its voxels size. 1 is equal to a full block, most entities starts at 0.1."
+					},
+					"rotate":{
+						"title":"Rotate",
+						"description":"Spin it into a new direction."
+					},
+					"rename":{
+						"title":"Rename",
+						"description":"Change the name."
 					}
 				}
 			},

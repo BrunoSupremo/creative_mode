@@ -33,6 +33,7 @@
 				"remove":"Remover",
 				"other":"Outros",
 				"data":"Dados",
+				"entities":"Entidades",
 				"inventory":"Inventario",
 				"jobs":"Classes",
 				"ui":"U.I."
@@ -59,8 +60,6 @@
 				"entity":"Deletar Entidade"
 			},
 			"other":{
-				"title":"Teleporte",
-				"teleport":"Teleportar Entidade",
 				"load_manifest":"Carregar Manifesto",
 				"unload_manifest":"Resetar Manifesto"
 			},
@@ -78,6 +77,34 @@
 					"seasons":{
 						"title":"Seasons",
 						"description":"Change the season."
+					}
+				},
+				"game_mode":{
+					"header":"Modo de Jogo",
+					"difficulty":{
+						"title":"Dificuldade",
+						"description":"Isso só mudará o nível de dificuldade dos inimigos, não suas regras originais de spawn. (por exemplo, mudar para pacífico não os impedirá de aparecer)"
+					}
+				}
+			},
+			"entities":{
+				"manipulation":{
+					"header":"Manipulação",
+					"teleport":{
+						"title":"Teletransporte",
+						"description":"Permite que você escolha um novo local para a entidade selecionada."
+					},
+					"scale":{
+						"title":"Escala",
+						"description":"Mude seu tamanho de voxels. 1 é igual a um bloco completo, a maioria das entidades começa em 0.1."
+					},
+					"rotate":{
+						"title":"Girar",
+						"description":"Gire-o em uma nova direção."
+					},
+					"rename":{
+						"title":"Renomear",
+						"description":"Mude o nome."
 					}
 				}
 			},
