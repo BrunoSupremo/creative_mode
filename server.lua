@@ -1,5 +1,5 @@
 creative_mode = {}
-print("Creative Mode version 22.7.22")
+print("Creative Mode version 22.7.30")
 
 --[[
 todo:
@@ -31,9 +31,14 @@ Categories:
 		buffs
 		manipulation
 			teleport
+			offset
 			scale
 			rotate
 			rename
+		citizens
+			attributes
+			add citizen
+			add npc citizen
 		traits
 	inventory
 		money

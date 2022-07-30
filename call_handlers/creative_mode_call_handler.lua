@@ -38,21 +38,6 @@ function CreativeModeHandler:remove(session, response, type)
 	return true
 end
 
-function CreativeModeHandler:add_citizen(session, response)
-	local player_id = session.player_id
-	local pop = stonehearth.population:get_population(player_id)
-	local citizen = pop:create_new_citizen()
-
-	local job = 'stonehearth:jobs:worker'
-
-	local job_component = citizen:get_component('stonehearth:job')
-	job_component:promote_to(job, {skip_visual_effects=true}) 
-
-	self:drop_at_banner(player_id, citizen)
-
-	return true
-end
-
 function CreativeModeHandler:spawn_item(session, response, item)
 	local player_id = session.player_id
 	item = "stonehearth:resources:"..item
@@ -75,6 +60,9 @@ end
 -- data
 
 function CreativeModeHandler:change_weather(session, response, uri)
+	if not uri or uri == "" then
+		uri = "stonehearth:weather:sunny"
+	end
 	stonehearth.weather:_switch_to(uri, session.player_id)
 	return true
 end
@@ -92,6 +80,58 @@ function CreativeModeHandler:change_difficulty(session, response, uri)
 end
 
 -- entities
+
+function CreativeModeHandler:teleport_entity(session, response, entity)
+	validator.expect_argument_types({'Entity'}, entity)
+
+	local scale = entity:get_component("render_info"):get_scale()
+	local cursor_entity = radiant.entities.create_entity(entity:get_uri())
+	cursor_entity:add_component('render_info')
+	:set_material('materials/ghost_item.json')
+	:set_scale(scale)
+
+	stonehearth.selection:select_location()
+	:set_free_rotation(radiant.entities.get_facing(entity))
+	:set_rotation_disabled(true)
+	:set_cursor_entity(cursor_entity)
+	:set_filter_fn(function (result, selector)
+		local normal = result.normal:to_int()
+		local location = result.brick:to_int()
+
+		if normal.y ~= 1 then
+			return stonehearth.selection.FILTER_IGNORE
+		end
+		if not radiant.terrain.is_standable(location) then
+			return stonehearth.selection.FILTER_IGNORE
+		end
+		return true
+	end)
+	:done(function(selector, location, rotation)
+		_radiant.call('stonehearth:reset_entity', entity, location.x, location.y, location.z)
+		:always(function()
+			selector:destroy()
+		end)
+		response:resolve({})
+	end)
+	:fail(function(selector)
+		selector:destroy()
+		response:reject('no location')
+	end)
+	:always(function()
+		radiant.entities.destroy_entity(cursor_entity)
+	end)
+	:go()
+end
+
+function CreativeModeHandler:offset_entity(session, response, entity, x,y,z)
+	if not entity then
+		return false
+	end
+	local mob = entity:add_component('mob')
+	mob:set_model_origin(Point3(x, y, z))
+	mob:move_to(mob:get_world_location())
+	return true
+end
 
 function CreativeModeHandler:change_scale(session, response, entity, scale)
 	if not entity then
@@ -115,6 +155,51 @@ function CreativeModeHandler:rotate_entity_command(session, response, entity, de
 	if region_collision_shape_component then
 		region_collision_shape_component:set_region(region_collision_shape_component:get_region())
 	end
+	return true
+end
+
+function CreativeModeHandler:set_attributes(session, response, entity, mind, body, spirit)
+	if not entity then
+		return false
+	end
+	radiant.entities.set_attribute(entity, "mind", mind)
+	radiant.entities.set_attribute(entity, "body", body)
+	radiant.entities.set_attribute(entity, "spirit", spirit)
+	return true
+end
+
+function CreativeModeHandler:add_citizen(session, response, kingdom)
+	local player_id = session.player_id
+	local pop = stonehearth.population:get_population(player_id)
+	if not kingdom or kingdom == "" then
+		kingdom = stonehearth.player:get_kingdom(player_id)
+	end
+	local citizen = pop:create_new_foreign_citizen(kingdom)
+
+	local job_component = citizen:get_component('stonehearth:job')
+	job_component:promote_to('stonehearth:jobs:worker', {skip_visual_effects=true})
+
+	self:drop_at_banner(player_id, citizen)
+
+	return true
+end
+
+function CreativeModeHandler:add_npc(session, response, kingdom)
+	local player_id = session.player_id
+	local pop = stonehearth.population:get_population(player_id)
+	if not kingdom or kingdom == "" then
+		kingdom = "stonehearth:kingdoms:amberstone"
+	end
+	local foreign_pop_json = radiant.resources.load_json(kingdom)
+	local role = radiant.get_random_map_key(foreign_pop_json.roles)
+	local role_data = foreign_pop_json.roles[role]
+	local gender = pop:_pick_random_gender()
+	local citizen = pop:_generate_citizen_from_role(role, role_data, gender)
+	pop:_set_citizen_initial_state(citizen, gender, role_data, {})
+
+	self:drop_at_banner(player_id, citizen)
+	radiant.entities.set_player_id(citizen, player_id)
+
 	return true
 end
 

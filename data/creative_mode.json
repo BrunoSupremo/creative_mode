@@ -7,12 +7,34 @@
 				"stonehearth:weather:foggy",
 				"stonehearth:weather:lucky",
 				"stonehearth:weather:rain",
+				"stonehearth:weather:rain:sunny",
 				"stonehearth:weather:sandstorm",
+				"stonehearth:weather:sandy",
 				"stonehearth:weather:snow",
+				"stonehearth:weather:snow:sunny",
 				"stonehearth:weather:sunny",
 				"stonehearth:weather:thunderstorm",
 				"stonehearth:weather:titanstorm",
-				"stonehearth:weather:windy"
+				"stonehearth:weather:windy",
+
+				"stonehearth_ace:weather:cloudy:chilly",
+				"stonehearth_ace:weather:cloudy:cold",
+				"stonehearth_ace:weather:distant_storm",
+				"stonehearth_ace:weather:hailstorm",
+				"stonehearth_ace:weather:rain:chilly",
+				"stonehearth_ace:weather:sandy:drifts",
+				"stonehearth_ace:weather:snow:drifts",
+				"stonehearth_ace:weather:snow:early",
+				"stonehearth_ace:weather:snow:late",
+				"stonehearth_ace:weather:sunny:autumn",
+				"stonehearth_ace:weather:sunny:chilly",
+				"stonehearth_ace:weather:sunny:hot",
+				"stonehearth_ace:weather:sunny:stagnant",
+				"stonehearth_ace:weather:sunny:sweltering",
+				"stonehearth_ace:weather:under_siege",
+				"stonehearth_ace:weather:whiteout",
+				"stonehearth_ace:weather:windy:chilly",
+				"stonehearth_ace:weather:windy:springtime"
 			]
 		}
 	}

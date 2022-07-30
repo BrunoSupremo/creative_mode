@@ -39,6 +39,24 @@
 		object-fit: contain;
 		margin: 8px;
 	}
+	select{
+		.handCursor;
+		font-family: @baseFontFamily;
+		font-size: 14px;
+		background-color: rgba(0, 0, 0, 0.5);
+		color: #fff;
+		option{
+			padding: 5px 15px;
+		}
+		option:nth-child(even){
+			background-color: rgba(0, 0, 0, 0.15);
+		}
+		option:checked {
+			background-position: center;
+			background-size: 1000% 1000%;
+			background-image: url(/stonehearth/ui/root/css/images/gui/panel.png);
+		}
+	}
 	div.border, div.borderless{
 		text-align: center;
 		position: relative;
@@ -126,6 +144,10 @@
 					position: relative;
 					flex: 2;
 
+					div.right_aligned{
+						width: max-content;
+						text-align: right;
+					}
 					h3{
 						margin-top: 0;
 					}
@@ -137,6 +159,12 @@
 						width: 70px;
 						padding: .5em;
 						font-size: 15px;
+					}
+					input.smaller{
+						width: 35px;
+					}
+					input.bigger{
+						width: 140px;
 					}
 					button{
 						background-size: contain, 1000% 1000%;

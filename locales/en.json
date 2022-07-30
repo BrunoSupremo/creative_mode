@@ -29,7 +29,6 @@
 			},
 			"menu":{
 				"categories":"Categories",
-				"spawn":"Spawn",
 				"remove":"Remove",
 				"other":"Others",
 				"data":"Data",
@@ -37,10 +36,6 @@
 				"inventory":"Inventory",
 				"jobs":"Jobs",
 				"ui":"U.I."
-			},
-			"citizens":{
-				"title":"Citizens",
-				"add":"Add Citizen"
 			},
 			"resources":{
 				"title":"Resources",
@@ -83,16 +78,35 @@
 					"header":"Game Mode",
 					"difficulty":{
 						"title":"Difficulty",
-						"description":"This will only change the enemies difficult level, not their original spawning rules. (e.g. changing to peacefull will not stop them form spawning)"
+						"description":"This will only change the enemies difficult level, not their original spawning rules. (e.g. changing to peacefull will not stop them from spawning)"
 					}
 				}
 			},
 			"entities":{
+				"citizens":{
+					"header":"Citizens",
+					"attributes":{
+						"title":"Attributes",
+						"description":"Set Mind, Body and Spirit of the selected citizen."
+					},
+					"add":{
+						"title":"Add Citizen",
+						"description":"Spawn a new citizen from the selected kingdom."
+					},
+					"add_npc":{
+						"title":"Add NPC",
+						"description":"Spawn a new npc from the selected npc kingdom."
+					},
+				},
 				"manipulation":{
 					"header":"Manipulation",
 					"teleport":{
 						"title":"Teleport",
 						"description":"Allows you to pick a new place for the selected entity."
+					},
+					"offset":{
+						"title":"Offset",
+						"description":"Offset the entity, visually only. E.g. if you offset it up in the air, the game will still consider it on the ground, at its real location."
 					},
 					"scale":{
 						"title":"Scale",

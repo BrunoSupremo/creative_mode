@@ -12,6 +12,7 @@
 		"stonehearth_ace"
 	],
 	"default_locale" : "en",
+	"client_init_script" : "file(client)",
 	"server_init_script" : "file(server)",
 	"aliases" : {
 		"data:creative_mode":"file(data/creative_mode.json)"
@@ -19,7 +20,11 @@
 	"mixintos" : {
 		"stonehearth/data/ui/start_menu.json":"file(data/ui/start_menu.json)",
 
-		"stonehearth:hotkeys": "file(data/hotkeys.json)"
+		"stonehearth:hotkeys": "file(data/hotkeys.json)",
+
+		"stonehearth:kingdoms:undead": "file(services/server/population/data/undead_population.json)",
+
+		"northern_alliance/ui/manifest.json": "file(ui/northern_alliance_manifest.json)"
 	},
 	"overrides" : {},
 
@@ -29,10 +34,6 @@
 			"endpoint": "server"
 		},
 		"remove": {
-			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
-			"endpoint": "server"
-		},
-		"add_citizen": {
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},
@@ -58,11 +59,32 @@
 			"endpoint": "server"
 		},
 
+		"teleport_entity": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "client"
+		},
+		"offset_entity": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
 		"change_scale": {
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},
 		"rotate_entity_command": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		
+		"set_attributes": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"add_citizen": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"add_npc": {
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},

@@ -118,6 +118,18 @@ App.CreativeModeView = App.View.extend({
 			"*": {}
 		}
 	},
+	creativeModePlayableKingdomsComponents: {
+		"kingdoms": {
+			"*": {}
+		}
+	},
+	creativeModeNPCKingdomsComponents: {
+		"populations": {
+			"*": {
+				"kingdom": {}
+			}
+		}
+	},
 
 	didInsertElement: function() {
 		var self = this;
@@ -189,8 +201,7 @@ App.CreativeModeView = App.View.extend({
 			radiant.each(response.data.calendar.weather_list, function(k, v) {
 				weather_list_array.push({
 					uri: v.__self.__self,
-					display_name: v.__self.display_name,
-					icon: v.__self.icon
+					display_name: v.__self.display_name
 				});
 			});
 			self.set('weather_list', weather_list_array);
@@ -212,6 +223,36 @@ App.CreativeModeView = App.View.extend({
 				return aOrdinal - bOrdinal;
 			});
 			self.set('game_modes', game_modes_array);
+		});
+
+		self._creativeModePlayableKingdomsTrace  = new StonehearthDataTrace('stonehearth:playable_kingdom_index', self.creativeModePlayableKingdomsComponents)
+		.progress(function(response) {
+			let kingdom_list_array = [];
+			let current_kingdom = App.population.getKingdom();
+			radiant.each(response.kingdoms, function(k, v) {
+				kingdom_list_array.push({
+					uri: v.__self,
+					ordinal: current_kingdom == v.__self ? 0.01 : v.ordinal,
+					display_name: v.display_name
+				});
+			});
+			kingdom_list_array.sort(function(a, b){
+				let aOrdinal = a.ordinal ? a.ordinal : 1000;
+				let bOrdinal = b.ordinal ? b.ordinal : 1000;
+				return aOrdinal - bOrdinal;
+			});
+			self.set('kingdom_list', kingdom_list_array);
+		});
+		self._creativeModeNPCKingdomsTrace  = new StonehearthDataTrace('stonehearth:data:npc_index', self.creativeModeNPCKingdomsComponents)
+		.progress(function(response) {
+			let npc_kingdom_list_array = [];
+			radiant.each(response.populations, function(k, v) {
+				npc_kingdom_list_array.push({
+					uri: v.kingdom.__self,
+					display_name: v.kingdom.kingdom_name
+				});
+			});
+			self.set('npc_kingdom_list', npc_kingdom_list_array);
 		});
 
 		let visibilityOptions_div = document.querySelector("#creative_mode_window #visibilityOptions_div");
@@ -251,6 +292,14 @@ App.CreativeModeView = App.View.extend({
 			self._creativeModeGameModeTrace.destroy();
 			self._creativeModeGameModeTrace = null;
 		}
+		if (self._creativeModePlayableKingdomsTrace) {
+			self._creativeModePlayableKingdomsTrace.destroy();
+			self._creativeModePlayableKingdomsTrace = null;
+		}
+		if (self._creativeModeNPCKingdomsTrace) {
+			self._creativeModeNPCKingdomsTrace.destroy();
+			self._creativeModeNPCKingdomsTrace = null;
+		}
 		App.stonehearth.CreativeModeView = null;
 
 		this._super();
@@ -277,10 +326,6 @@ App.CreativeModeView = App.View.extend({
 			radiant.call('stonehearth:destroy_entity', App.stonehearthClient.getSelectedEntity());
 		},
 
-		add_citizen: function(){
-			radiant.call('creative_mode:add_citizen');
-		},
-
 		spawn_item: function(item){
 			radiant.call('creative_mode:spawn_item', item);
 		},
@@ -301,7 +346,7 @@ App.CreativeModeView = App.View.extend({
 		//data
 		change_weather: function(){
 			radiant.call('creative_mode:change_weather',
-				document.querySelector("#weatherOptions_div input:checked").id);
+				document.querySelector("#weatherOptions_div").value);
 		},
 		change_difficulty: function(){
 			radiant.call('creative_mode:change_difficulty',
@@ -310,7 +355,15 @@ App.CreativeModeView = App.View.extend({
 
 		//entities
 		teleport_entity: function(){
-			radiant.call('stonehearth:teleport_entity', App.stonehearthClient.getSelectedEntity());
+			radiant.call('creative_mode:teleport_entity', App.stonehearthClient.getSelectedEntity());
+		},
+		offset_entity: function(){
+			radiant.call('creative_mode:offset_entity',
+				App.stonehearthClient.getSelectedEntity(),
+				parseFloat(document.querySelector("#entities_offset_x_input").value),
+				parseFloat(document.querySelector("#entities_offset_y_input").value),
+				parseFloat(document.querySelector("#entities_offset_z_input").value)
+				);
 		},
 		change_scale: function(){
 			radiant.call('creative_mode:change_scale',
@@ -322,6 +375,25 @@ App.CreativeModeView = App.View.extend({
 			radiant.call('stonehearth:set_custom_name',
 				App.stonehearthClient.getSelectedEntity(),
 				document.querySelector("#entities_rename_input").value
+				);
+		},
+
+		set_attributes: function(){
+			radiant.call('creative_mode:set_attributes',
+				App.stonehearthClient.getSelectedEntity(),
+				parseInt(document.querySelector("#entities_citizens_mind_input").value),
+				parseInt(document.querySelector("#entities_citizens_body_input").value),
+				parseInt(document.querySelector("#entities_citizens_spirit_input").value)
+				);
+		},
+		add_citizen: function(){
+			radiant.call('creative_mode:add_citizen',
+				document.querySelector("#citizenKingdomOptions_div").value
+				);
+		},
+		add_npc: function(){
+			radiant.call('creative_mode:add_npc',
+				document.querySelector("#npcKingdomOptions_div").value
 				);
 		},
 

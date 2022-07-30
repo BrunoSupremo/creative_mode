@@ -8,7 +8,6 @@
 			<div class="title">{{i18n creative_mode:ui.game.creative_mode.display_name}} <div class="closeButton"></div></div>
 			<nav>
 				<h1>{{i18n creative_mode:ui.window.menu.categories}}</h1>
-				<button {{action "show_page" "spawn" target=view}}>{{i18n creative_mode:ui.window.menu.spawn}}</button>
 				<button {{action "show_page" "remove" target=view}}>{{i18n creative_mode:ui.window.menu.remove}}</button>
 				<!-- <button {{action "show_page" "other" target=view}}>{{i18n creative_mode:ui.window.menu.other}}</button> -->
 
@@ -69,15 +68,11 @@
 							<p>{{i18n creative_mode:ui.window.data.calendar.weather.description}}</p>
 						</div>
 						<div>
-							<div id="weatherOptions_div">
+							<select id="weatherOptions_div" size="6">
 								{{#each weather in view.weather_list}}
-								<input type="radio" name="weatherOptions" {{bind-attr id=weather.uri}}>
-								<label {{bind-attr for=weather.uri}}>
-									<img src={{unbound weather.icon}}>
-									{{i18n_key weather.display_name}}
-								</label>
+								<option {{bind-attr value=weather.uri}}>{{i18n_key weather.display_name}}</option>
 								{{/each}}
-							</div>
+							</select>
 							<button {{action "change_weather" target=view}}></button>
 						</div>
 					</section>
@@ -126,6 +121,26 @@
 					</section>
 					<section>
 						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.manipulation.offset.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.manipulation.offset.description}}</p>
+						</div>
+						<div>
+							<div class="right_aligned">
+								<label>X:</label>
+								<input id="entities_offset_x_input" type="text" value="0" class="smaller">
+								<br>
+								<label>Y:</label>
+								<input id="entities_offset_y_input" type="text" value="0" class="smaller">
+								<br>
+								<label>Z:</label>
+								<input id="entities_offset_z_input" type="text" value="0" class="smaller">
+								<br>
+							</div>
+							<button {{action "offset_entity" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
 							<h3>{{i18n creative_mode:ui.window.entities.manipulation.scale.title}}</h3>
 							<p>{{i18n creative_mode:ui.window.entities.manipulation.scale.description}}</p>
 						</div>
@@ -152,8 +167,59 @@
 							<p>{{i18n creative_mode:ui.window.entities.manipulation.rename.description}}</p>
 						</div>
 						<div>
-							<input id="entities_rename_input" type="text" value="abc">
+							<input id="entities_rename_input" type="text" placeholder="New name" class="bigger">
 							<button {{action "rename" target=view}}></button>
+						</div>
+					</section>
+				</main>
+				<main>
+					<h2 id="entities_citizens">{{i18n creative_mode:ui.window.entities.citizens.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.citizens.attributes.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.citizens.attributes.description}}</p>
+						</div>
+						<div>
+							<div class="right_aligned">
+								<label>{{i18n stonehearth:ui.data.tooltips.mind.display_name}}:</label>
+								<input id="entities_citizens_mind_input" type="text" value="6" class="smaller">
+								<br>
+								<label>{{i18n stonehearth:ui.data.tooltips.body.display_name}}:</label>
+								<input id="entities_citizens_body_input" type="text" value="6" class="smaller">
+								<br>
+								<label>{{i18n stonehearth:ui.data.tooltips.spirit.display_name}}:</label>
+								<input id="entities_citizens_spirit_input" type="text" value="6" class="smaller">
+								<br>
+							</div>
+							<button {{action "set_attributes" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.citizens.add.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.citizens.add.description}}</p>
+						</div>
+						<div>
+							<select id="citizenKingdomOptions_div" size="4">
+								{{#each kingdom in view.kingdom_list}}
+								<option {{bind-attr value=kingdom.uri}}>{{i18n_key kingdom.display_name}}</option>
+								{{/each}}
+							</select>
+							<button {{action "add_citizen" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.citizens.add_npc.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.citizens.add_npc.description}}</p>
+						</div>
+						<div>
+							<select id="npcKingdomOptions_div" size="6">
+								{{#each kingdom in view.npc_kingdom_list}}
+								<option {{bind-attr value=kingdom.uri}}>{{i18n_key kingdom.display_name}}</option>
+								{{/each}}
+							</select>
+							<button {{action "add_npc" target=view}}></button>
 						</div>
 					</section>
 				</main>
@@ -279,21 +345,6 @@
 							<label for="visible_at_debugtools">
 								{{i18n creative_mode:ui.window.ui.visibility.buttons.debugtools}}
 							</label>
-						</div>
-					</section>
-				</main>
-			</div>
-
-			<div id="spawn" class="page">
-				<main>
-					<h2>{{i18n creative_mode:ui.window.citizens.title}}</h2>
-					<section>
-						<div>
-							<h3>{{i18n creative_mode:ui.window.citizens.add}}</h3>
-							<p>{{i18n creative_mode:ui.window.citizens.add}}</p>
-						</div>
-						<div>
-							<button {{action "add_citizen" target=view}}></button>
 						</div>
 					</section>
 				</main>

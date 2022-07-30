@@ -29,7 +29,6 @@
 			},
 			"menu":{
 				"categories":"Categorias",
-				"spawn":"Criar",
 				"remove":"Remover",
 				"other":"Outros",
 				"data":"Dados",
@@ -37,10 +36,6 @@
 				"inventory":"Inventario",
 				"jobs":"Classes",
 				"ui":"U.I."
-			},
-			"citizens":{
-				"title":"Cidadão",
-				"add":"Adicionar Cidadão"
 			},
 			"resources":{
 				"title":"Recursos",
@@ -88,11 +83,30 @@
 				}
 			},
 			"entities":{
+				"citizens":{
+					"header":"Cidadãos",
+					"attributes":{
+						"title":"Atributos",
+						"description":"Defina a Mente, o Corpo e o Espírito do cidadão selecionado."
+					},
+					"add":{
+						"title":"Adicionar Cidadão",
+						"description":"Gerar um novo cidadão do reino selecionado."
+					},
+					"add_npc":{
+						"title":"Adicionar NPC",
+						"description":"Ganha um novo npc do reino npc selecionado."
+					},
+				},
 				"manipulation":{
 					"header":"Manipulação",
 					"teleport":{
 						"title":"Teletransporte",
 						"description":"Permite que você escolha um novo local para a entidade selecionada."
+					},
+					"offset":{
+						"title":"Deslocamento",
+						"description":"Desloque a entidade, apenas visualmente. Por exemplo, se você a deslocar no ar, o jogo ainda a considerará no chão, em sua localização real."
 					},
 					"scale":{
 						"title":"Escala",

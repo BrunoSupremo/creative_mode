@@ -1,0 +1,5 @@
+{
+	"overrides" : {
+		"stonehearth/ui/game/unit_frame/images/name-bg.png" : "northern_alliance/ui/unit_frame/name-bg.png"
+	}
+}
