@@ -35,7 +35,7 @@
 				"entities":"Entidades",
 				"inventory":"Inventario",
 				"jobs":"Classes",
-				"ui":"U.I."
+				"ui":"U.I. & VFX"
 			},
 			"resources":{
 				"title":"Recursos",
@@ -60,7 +60,7 @@
 			},
 			"data":{
 				"calendar":{
-					"header":"Calendar",
+					"header":"Calendário",
 					"time":{
 						"title":"Tempo",
 						"description":"Defina a hora atual do dia."
@@ -70,8 +70,8 @@
 						"description":"Mude o clima. Clique duas vezes para pular a transição lenta."
 					},
 					"seasons":{
-						"title":"Seasons",
-						"description":"Change the season."
+						"title": "Estações",
+						"description": "Mude a estação."
 					}
 				},
 				"game_mode":{
@@ -97,6 +97,10 @@
 						"title":"Adicionar NPC",
 						"description":"Ganha um novo npc do reino npc selecionado."
 					},
+					"turn_into_citizen":{
+						"title":"Torne um Cidadão",
+						"description":"Transforme a entidade selecionada em um cidadão adequado de sua cidade. Útil para NPCs ou mobs."
+					}
 				},
 				"manipulation":{
 					"header":"Manipulação",
@@ -168,6 +172,20 @@
 						"description":"Defina quais botões permanecerão visíveis. Se nenhum estiver visível, você só poderá abri-lo através do atalho de teclado, Ctrl+Shift+C",
 						"taskbar":"Na barra de tarefas",
 						"debugtools":"Nas ferramentas de debug"
+					}
+				},
+				"colors":{
+					"header":"Cores",
+					"contrast":{
+						"title":"Contraste da Câmera",
+						"description":"Defina o contraste/saturação da imagem do jogo"
+					}
+				},
+				"snow":{
+					"header":"Neve",
+					"layer":{
+						"title":"Camada de Neve",
+						"description":"Defina a quantidade de neve que cobre o mundo"
 					}
 				}
 			}

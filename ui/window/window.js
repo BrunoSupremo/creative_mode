@@ -194,6 +194,26 @@ App.CreativeModeView = App.View.extend({
 					ui.value);
 			}
 		});
+		self.$('#slider_colors').slider({
+			value: 0,
+			min: -2,
+			max: 2,
+			step: 1 / 10,
+			slide: function (event, ui) {
+				radiant.call('creative_mode:camera_colors_command',
+					ui.value);
+			}
+		});
+		self.$('#slider_snow').slider({
+			value: 0.0001,
+			min: 0.0001,
+			max: 1,
+			step: 1 / 100,
+			slide: function (event, ui) {
+				radiant.call('creative_mode:snow_layer_command',
+					ui.value);
+			}
+		});
 
 		self._creativeModeWeatherTrace  = new StonehearthDataTrace('/creative_mode/data/creative_mode.json', self.creativeModeWeatherComponents)
 		.progress(function(response) {
@@ -394,6 +414,11 @@ App.CreativeModeView = App.View.extend({
 		add_npc: function(){
 			radiant.call('creative_mode:add_npc',
 				document.querySelector("#npcKingdomOptions_div").value
+				);
+		},
+		turn_into_citizen: function(){
+			radiant.call('creative_mode:turn_into_citizen',
+				App.stonehearthClient.getSelectedEntity()
 				);
 		},
 

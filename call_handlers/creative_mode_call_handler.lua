@@ -203,6 +203,30 @@ function CreativeModeHandler:add_npc(session, response, kingdom)
 	return true
 end
 
+function CreativeModeHandler:turn_into_citizen(session, response, entity)
+	if not entity then
+		return false
+	end
+	local player_id = session.player_id
+	local pop = stonehearth.population:get_population(player_id)
+
+	if pop._sv.citizens:contains(entity:get_id()) then
+		return false
+	end
+
+	local job_component = entity:get_component('stonehearth:job')
+	if job_component and job_component._mid_level_title then
+		job_component:promote_to('stonehearth:jobs:worker', {skip_visual_effects=true})
+	end
+
+	pop._sv.citizens:add(entity:get_id(), entity)
+	pop:_monitor_citizen(entity)
+	radiant.entities.add_thought(entity, 'stonehearth:thoughts:town:founding:pioneering_spirit')
+
+	pop.__saved_variables:mark_changed()
+	return true
+end
+
 -- inventory
 
 function CreativeModeHandler:add_gold(session, response, gold_amount)
@@ -309,6 +333,20 @@ function CreativeModeHandler:unlock_recipes(session, response)
 		job_info.__saved_variables:mark_changed()
 	end
 
+	return true
+end
+
+-- ui
+
+function CreativeModeHandler:camera_colors_command(session, response, value)
+	--value *-1 because the code desaturates, but text says it saturates (inverse meaning)
+	_radiant.renderer.set_global_uniform('global_desaturate_multiplier', value *-1)
+	return true
+end
+
+function CreativeModeHandler:snow_layer_command(session, response, value)
+	stonehearth.weather._sv.current_snow_amount = value
+	stonehearth.weather.__saved_variables:mark_changed()
 	return true
 end
 

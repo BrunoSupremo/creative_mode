@@ -35,7 +35,7 @@
 				"entities":"Entities",
 				"inventory":"Inventory",
 				"jobs":"Jobs",
-				"ui":"U.I."
+				"ui":"U.I. & VFX"
 			},
 			"resources":{
 				"title":"Resources",
@@ -97,6 +97,10 @@
 						"title":"Add NPC",
 						"description":"Spawn a new npc from the selected npc kingdom."
 					},
+					"turn_into_citizen":{
+						"title":"Turn into a Citizen",
+						"description":"Make the select entity into a proper citizen of your town. Useful for NPCs or mobs."
+					}
 				},
 				"manipulation":{
 					"header":"Manipulation",
@@ -168,6 +172,20 @@
 						"description":"Set which buttons will stay visible. If none is visible, you will only be able to open it through the keyboard shortcut, Ctrl+Shift+C",
 						"taskbar":"At taskbar",
 						"debugtools":"At debug tools"
+					}
+				},
+				"colors":{
+					"header":"Colors",
+					"contrast":{
+						"title":"Camera Contrast",
+						"description":"Set the contrast/saturation of the game image"
+					}
+				},
+				"snow":{
+					"header":"Snow",
+					"layer":{
+						"title":"Snow Layer",
+						"description":"Set the amount of snow covering the world"
 					}
 				}
 			}

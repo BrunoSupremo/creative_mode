@@ -222,6 +222,15 @@
 							<button {{action "add_npc" target=view}}></button>
 						</div>
 					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.entities.citizens.turn_into_citizen.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.entities.citizens.turn_into_citizen.description}}</p>
+						</div>
+						<div>
+							<button {{action "turn_into_citizen" target=view}}></button>
+						</div>
+					</section>
 				</main>
 			</div>
 			<div id="inventory" class="page">
@@ -330,7 +339,7 @@
 			</div>
 			<div id="ui" class="page">
 				<main>
-					<h2 id="jobs_unlock">{{i18n creative_mode:ui.window.ui.visibility.header}}</h2>
+					<h2 id="ui_visibility">{{i18n creative_mode:ui.window.ui.visibility.header}}</h2>
 					<section>
 						<div>
 							<h3>{{i18n creative_mode:ui.window.ui.visibility.buttons.title}}</h3>
@@ -345,6 +354,36 @@
 							<label for="visible_at_debugtools">
 								{{i18n creative_mode:ui.window.ui.visibility.buttons.debugtools}}
 							</label>
+						</div>
+					</section>
+				</main>
+				<main>
+					<h2 id="ui_colors">{{i18n creative_mode:ui.window.ui.colors.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.ui.colors.contrast.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.ui.colors.contrast.description}}</p>
+						</div>
+						<div>
+							<div id="slider_colors"></div>
+							<div class="below_slider">
+								<span>-2</span><span>0</span><span>+2</span>
+							</div>
+						</div>
+					</section>
+				</main>
+				<main>
+					<h2 id="ui_snow">{{i18n creative_mode:ui.window.ui.snow.header}}</h2>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.ui.snow.layer.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.ui.snow.layer.description}}</p>
+						</div>
+						<div>
+							<div id="slider_snow"></div>
+							<div class="below_slider">
+								<span>0%</span><span>50%</span><span>100%</span>
+							</div>
 						</div>
 					</section>
 				</main>

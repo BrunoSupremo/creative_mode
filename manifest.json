@@ -88,6 +88,10 @@
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},
+		"turn_into_citizen": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
 		
 		"add_gold": {
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
@@ -115,6 +119,15 @@
 			"endpoint": "server"
 		},
 		"unlock_recipes": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+
+		"camera_colors_command": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "client"
+		},
+		"snow_layer_command": {
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},

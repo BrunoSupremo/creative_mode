@@ -116,6 +116,7 @@
 				filter: contrast(0.5);
 			}
 			h2{
+				.handCursor;
 				position: absolute;
 				top: -35px;
 				right: initial;
@@ -126,6 +127,10 @@
 				border-style: solid;
 				height: 32px;
 				color: #ebebeb;
+				transition: filter 0.50s;
+			}
+			h2:hover{
+				filter: brightness(1.2);
 			}
 			h2.collapsed ~ section{
 				display: none;

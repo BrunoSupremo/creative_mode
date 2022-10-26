@@ -1,8 +1,13 @@
 creative_mode = {}
-print("Creative Mode version 22.7.30")
+print("Creative Mode version 22.10.25")
 
 --[[
 todo:
+
+change components
+
+traits
+player_id changing
 
 quick crafting
 everyone happy
@@ -39,6 +44,7 @@ Categories:
 			attributes
 			add citizen
 			add npc citizen
+			turn into citizen
 		traits
 	inventory
 		money
@@ -54,6 +60,7 @@ Categories:
 	ui
 		visibility
 			buttons
+		snow
 ]]
 
 return creative_mode
