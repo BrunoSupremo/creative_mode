@@ -131,6 +131,10 @@
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},
+		"trees_visibility": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "client"
+		},
 	},
 	"components" : {},
 	"controllers" : {},

@@ -187,6 +187,13 @@
 						"title":"Camada de Neve",
 						"description":"Defina a quantidade de neve que cobre o mundo"
 					}
+				},
+				"trees":{
+					"header":"Árvores",
+					"layer":{
+						"title":"Camada de Árvores",
+						"description":"Ocultar temporariamente árvores e outras entidades naturais"
+					}
 				}
 			}
 		}

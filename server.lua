@@ -4,6 +4,10 @@ print("Creative Mode version 22.10.25")
 --[[
 todo:
 
+allow to set a container to contain nothing for those (!) containers so that i can use them purely for decoration 🙂 without seing the ! 
+
+cinematics camera tour
+
 change components
 
 traits

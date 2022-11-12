@@ -350,4 +350,15 @@ function CreativeModeHandler:snow_layer_command(session, response, value)
 	return true
 end
 
+function CreativeModeHandler:trees_visibility(session, response)
+	local ec = radiant._root_entity:get_component('entity_container')
+	for _, entity in ec:each_child() do
+		if entity:get_player_id() == nil or entity:get_player_id() == "" then
+			_radiant.client.get_render_entity(entity):get_visibility_override_handle():set_visible(false)
+		end
+	end
+
+	return true
+end
+
 return CreativeModeHandler

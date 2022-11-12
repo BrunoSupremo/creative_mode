@@ -187,6 +187,13 @@
 						"title":"Snow Layer",
 						"description":"Set the amount of snow covering the world"
 					}
+				},
+				"trees":{
+					"header":"Trees",
+					"layer":{
+						"title":"Trees Layer",
+						"description":"Temporarily hide trees and other natural entities"
+					}
 				}
 			}
 		}

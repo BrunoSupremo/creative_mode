@@ -447,5 +447,10 @@ App.CreativeModeView = App.View.extend({
 		unlock_recipes: function(){
 			radiant.call('creative_mode:unlock_recipes');
 		},
+
+		//ui
+		trees_visibility: function(){
+			radiant.call('creative_mode:trees_visibility');
+		},
 	}
 });
