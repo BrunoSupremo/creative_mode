@@ -144,16 +144,34 @@
 				}
 			},
 			"jobs":{
-				"unlock":{
-					"header":"Desbloquear",
+				"promote":{
+					"header":"Promoção",
+					"job":{
+						"title":"Promova",
+						"description":"Promova o cidadão selecionado para o trabalho escolhido."
+					},
 					"talisman":{
 						"title":"Talismãs",
 						"description":"Gera todos os talismãs."
-					},
+					}
+				},
+				"levelup":{
+					"header":"Níveis",
 					"levelup":{
-						"title":"Subir de nível",
-						"description":"Eleve todos ao nível máximo."
+						"título":"Trabalhador",
+						"description":"Eleve a classe do cidadão selecionado para o nível máximo."
 					},
+					"Cidade":{
+						"title":"Cidade inteira",
+						"description":"Elevar a classe atual de todos os cidadãos para o nível máximo."
+					},
+					"multitarefas":{
+						"title":"Múltiplos trabalhos",
+						"description":"O cidadão selecionado terá nível máximo em todos as classes possíveis."
+					}
+				},
+				"unlock":{
+					"header":"Desbloquear",
 					"crops":{
 						"title":"Plantações",
 						"description":"Desbloqueia todas as opções de culturas."

@@ -144,16 +144,34 @@
 				}
 			},
 			"jobs":{
-				"unlock":{
-					"header":"Unlock",
+				"promote":{
+					"header":"Promotion",
+					"job":{
+						"title":"Promote",
+						"description":"Promote the selected citizen to the chosen job."
+					},
 					"talisman":{
 						"title":"Talismans",
 						"description":"Spawn all job talismans."
-					},
+					}
+				},
+				"levelup":{
+					"header":"Level Up",
 					"levelup":{
-						"title":"Level up",
-						"description":"Raise all jobs to max level."
+						"title":"Worker",
+						"description":"Raise the job of the selected citizen to max level."
 					},
+					"town":{
+						"title":"Whole town",
+						"description":"Raise the current job of all citizens to max level."
+					},
+					"multijobs":{
+						"title":"Multiple Jobs",
+						"description":"The selected citizen will be max level in all possible jobs."
+					}
+				},
+				"unlock":{
+					"header":"Unlock",
 					"crops":{
 						"title":"Crops",
 						"description":"Unlocks all crop options."

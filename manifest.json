@@ -106,11 +106,23 @@
 			"endpoint": "server"
 		},
 
+		"promote": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
 		"spawn_talismans": {
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},
 		"levelup": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"levelup_town": {
+			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
+			"endpoint": "server"
+		},
+		"levelup_multijobs": {
 			"controller": "file(call_handlers/creative_mode_call_handler.lua)",
 			"endpoint": "server"
 		},

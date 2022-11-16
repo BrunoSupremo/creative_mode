@@ -269,6 +269,14 @@ end
 
 -- jobs
 
+function CreativeModeHandler:promote(session, response, entity, job)
+	local job_component = entity:get_component('stonehearth:job')
+	if job_component:get_allowed_jobs() == nil or job_component:get_allowed_jobs()[job] then
+		job_component:promote_to(job, {skip_visual_effects=true})
+		return true
+	end
+	return false
+end
 function CreativeModeHandler:spawn_talismans(session, response)
 	local player_id = session.player_id
 	local all_uris = stonehearth.catalog:get_all_entity_uris()
@@ -284,17 +292,57 @@ function CreativeModeHandler:spawn_talismans(session, response)
 	return true
 end
 
-function CreativeModeHandler:levelup(session, response)
+function CreativeModeHandler:levelup(session, response, entity)
+	if not entity then
+		return false
+	end
+	local job_component = entity:get_component('stonehearth:job')
+	for i=2,6 do
+		if not job_component:is_max_level() then
+			job_component:level_up(true)
+		else
+			break
+		end
+	end
+	return true
+end
+function CreativeModeHandler:levelup_town(session, response)
 	local population = stonehearth.population:get_population(session.player_id)
 	for _, citizen in population:get_citizens():each() do
 		local job_component = citizen:get_component('stonehearth:job')
 		for i=2,6 do
 			if not job_component:is_max_level() then
 				job_component:level_up(true)
+			else
+				break
 			end
 		end
 	end
 	return true
+end
+function CreativeModeHandler:levelup_multijobs(session, response, entity)
+	if not entity then
+		return false
+	end
+	local job_component = entity:get_component('stonehearth:job')
+	local current_job = job_component:get_job_uri()
+	local job_index = stonehearth.player:get_jobs(session.player_id)
+	for alias,data in pairs(job_index) do
+		local job_info_desc = stonehearth.job:get_job_info(session.player_id, alias)._description_json
+		local job_valid = job_info_desc.enabled and not job_info_desc.is_npc_job
+		local job_allowed = job_component:get_allowed_jobs() == nil or job_component:get_allowed_jobs()[alias]
+		if job_allowed and job_valid then
+			job_component:promote_to(alias, {skip_visual_effects=true,dont_drop_talisman=true})
+			for i=2,6 do
+				if not job_component:is_max_level() then
+					job_component:level_up(true)
+				else
+					break
+				end
+			end
+		end
+	end
+	job_component:promote_to(current_job, {skip_visual_effects=true,dont_drop_talisman=true})
 end
 
 function CreativeModeHandler:unlock_crops(session, response)

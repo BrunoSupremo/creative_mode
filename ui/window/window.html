@@ -298,25 +298,63 @@
 			</div>
 			<div id="jobs" class="page">
 				<main>
-					<h2 id="jobs_unlock">{{i18n creative_mode:ui.window.jobs.unlock.header}}</h2>
+					<h2 id="jobs_promote">{{i18n creative_mode:ui.window.jobs.promote.header}}</h2>
 					<section>
 						<div>
-							<h3>{{i18n creative_mode:ui.window.jobs.unlock.talisman.title}}</h3>
-							<p>{{i18n creative_mode:ui.window.jobs.unlock.talisman.description}}</p>
+							<h3>{{i18n creative_mode:ui.window.jobs.promote.job.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.promote.job.description}}</p>
+						</div>
+						<div>
+							<select id="jobOptions_div" size="6">
+								{{#each job in view.job_list}}
+								<option {{bind-attr value=job.uri}}>{{i18n_key job.display_name}}</option>
+								{{/each}}
+							</select>
+							<button {{action "promote" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.jobs.promote.talisman.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.promote.talisman.description}}</p>
 						</div>
 						<div>
 							<button {{action "spawn_talismans" target=view}}></button>
 						</div>
 					</section>
+				</main>
+				<main>
+					<h2 id="jobs_levelup">{{i18n creative_mode:ui.window.jobs.levelup.header}}</h2>
 					<section>
 						<div>
-							<h3>{{i18n creative_mode:ui.window.jobs.unlock.levelup.title}}</h3>
-							<p>{{i18n creative_mode:ui.window.jobs.unlock.levelup.description}}</p>
+							<h3>{{i18n creative_mode:ui.window.jobs.levelup.levelup.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.levelup.levelup.description}}</p>
 						</div>
 						<div>
 							<button {{action "levelup" target=view}}></button>
 						</div>
 					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.jobs.levelup.town.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.levelup.town.description}}</p>
+						</div>
+						<div>
+							<button {{action "levelup_town" target=view}}></button>
+						</div>
+					</section>
+					<section>
+						<div>
+							<h3>{{i18n creative_mode:ui.window.jobs.levelup.multijobs.title}}</h3>
+							<p>{{i18n creative_mode:ui.window.jobs.levelup.multijobs.description}}</p>
+						</div>
+						<div>
+							<button {{action "levelup_multijobs" target=view}}></button>
+						</div>
+					</section>
+				</main>
+				<main>
+					<h2 id="jobs_unlock">{{i18n creative_mode:ui.window.jobs.unlock.header}}</h2>
 					<section>
 						<div>
 							<h3>{{i18n creative_mode:ui.window.jobs.unlock.crops.title}}</h3>

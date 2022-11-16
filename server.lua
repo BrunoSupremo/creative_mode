@@ -56,15 +56,21 @@ Categories:
 			trader
 			traveler
 	jobs
+		promote
+			job
+			drop talismans
+		level up
+			worker
+			whole town
+			worker in all jobs
 		unlocks
-			talismans
-			level ups
 			all crops
 			all recipes
 	ui
 		visibility
 			buttons
 		snow
+		trees
 ]]
 
 return creative_mode

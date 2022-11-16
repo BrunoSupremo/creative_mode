@@ -130,6 +130,13 @@ App.CreativeModeView = App.View.extend({
 			}
 		}
 	},
+	creativeModeJobsComponents: {
+		"jobs": {
+			"*": {
+				"description": "*"
+			}
+		}
+	},
 
 	didInsertElement: function() {
 		var self = this;
@@ -274,6 +281,19 @@ App.CreativeModeView = App.View.extend({
 			});
 			self.set('npc_kingdom_list', npc_kingdom_list_array);
 		});
+		self._creativeModeJobsTrace  = new StonehearthDataTrace('stonehearth:jobs:index', self.creativeModeJobsComponents)
+		.progress(function(response) {
+			let jobs_array = [];
+			radiant.each(response.jobs, function(k, v) {
+				if(v.description.enabled){
+					jobs_array.push({
+						uri: k,
+						display_name: v.description.display_name
+					});
+				}
+			});
+			self.set('job_list', jobs_array);
+		});
 
 		let visibilityOptions_div = document.querySelector("#creative_mode_window #visibilityOptions_div");
 		$('#creative_mode_window #visibilityOptions_div input').click(function() {
@@ -319,6 +339,10 @@ App.CreativeModeView = App.View.extend({
 		if (self._creativeModeNPCKingdomsTrace) {
 			self._creativeModeNPCKingdomsTrace.destroy();
 			self._creativeModeNPCKingdomsTrace = null;
+		}
+		if (self._creativeModeJobsTrace) {
+			self._creativeModeJobsTrace.destroy();
+			self._creativeModeJobsTrace = null;
 		}
 		App.stonehearth.CreativeModeView = null;
 
@@ -435,11 +459,27 @@ App.CreativeModeView = App.View.extend({
 		},
 
 		//jobs
+		promote: function(){
+			radiant.call('creative_mode:promote',
+				App.stonehearthClient.getSelectedEntity(),
+				document.querySelector("#jobOptions_div").value
+				);
+		},
 		spawn_talismans: function(){
 			radiant.call('creative_mode:spawn_talismans');
 		},
 		levelup: function(){
-			radiant.call('creative_mode:levelup');
+			radiant.call('creative_mode:levelup',
+				App.stonehearthClient.getSelectedEntity()
+				);
+		},
+		levelup_town: function(){
+			radiant.call('creative_mode:levelup_town');
+		},
+		levelup_multijobs: function(){
+			radiant.call('creative_mode:levelup_multijobs',
+				App.stonehearthClient.getSelectedEntity()
+				);
 		},
 		unlock_crops: function(){
 			radiant.call('creative_mode:unlock_crops');
